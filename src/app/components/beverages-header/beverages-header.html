@@ -1,0 +1,53 @@
+<div nz-flex [nzVertical]="false" class="header-container">
+    <div class="logo-container" [nzFlex]="'1 0 0'">x</div>
+    <div nz-flex class="nav-container" [nzFlex]="'2 0 0'" nzJustify="space-between" nzAlign="center">
+      @if (!authService.currentUser()) {
+        <div nz-flex nzGap="8px" nzAlign="center">
+          <button nz-button nzType="primary" (click)="onLogin()">Login</button>
+          <button nz-button nzType="default" (click)="onLogin()">Register</button>
+        </div>
+        <!-- <div style="background-color: aliceblue;">{{authService.currentUser() | json}}</div> -->
+      } @else {
+        <!-- <div style="background-color: aliceblue;">{{authService.currentUser() | json}}</div> -->
+
+        <div>
+          <nz-input-group [nzSuffix]="suffixIcon" style="background-color: red1;">
+            <input
+              nzSize="small"
+              nz-input
+              [formControl]="searchControl"
+              placeholder="Search users..."
+              [nzAutocomplete]="auto"
+              (ngModelChange)="onSearch($event)" />
+          </nz-input-group>
+          <!-- [(ngModel)]="searchValue" -->
+        </div>
+      }
+    </div>
+    <div class="right" nz-flex [nzFlex]="'1 0 0'">
+      @if (authService.currentUser(); as user) {
+        <div nz-flex nzAlign="center" nzGap="8px">
+          <button nz-button nzType="default" (click)="onLogout()">Logout</button>
+          <p style="background-color: aqua;">{{ user.email }}</p> <!-- should be username -->
+        </div>
+      }
+    </div>
+    <!-- <nz-autocomplete #auto [nzDataSource]="options"> -->
+    <!-- <nz-autocomplete #auto>
+      <nz-auto-option *ngFor="let option of options | async" [nzValue]="option"
+        (selectionChange)="onSearchUserDetails($event, option)">
+        {{ option }}
+      </nz-auto-option>
+    </nz-autocomplete> -->
+</div>
+
+<ng-template #suffixIcon>
+  <span nz-icon nzType="search" nzTheme="outline"></span>
+</ng-template>
+
+<nz-autocomplete #auto>
+  <nz-auto-option *ngFor="let option of options | async" [nzValue]="option"
+    (selectionChange)="onSearchUserDetails($event, option)">
+    {{ option }}
+  </nz-auto-option>
+</nz-autocomplete>

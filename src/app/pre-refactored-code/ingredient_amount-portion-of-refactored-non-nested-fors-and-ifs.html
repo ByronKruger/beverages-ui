@@ -1,0 +1,27 @@
+              @if (!ingredient.isComplex) {
+                <nz-divider></nz-divider>
+                @if (isReadOnly()) {
+                  <div style="background-color:burlywood1">
+                    <p>{{ ingredient.descr + ": " + getAmountByIngredientId(ingredient.id) }}</p>
+                  </div>
+                } @else {
+                  <!-- Simple ingredient: wrap with container matching the FormArray -->
+                  <ng-container formArrayName="ingredientAmounts">
+                    <ng-container [formGroupName]="getSimpleIngredientFormIndex(ingredient.id)">  <!-- You need a method to find the correct index by ID -->
+                      <nz-form-item>
+                        <nz-form-label>{{ ingredient.descr }}</nz-form-label>
+                        <nz-form-control>
+                          @if (isEdit()) {
+                            <nz-input-number 
+                              nzSize="large" 
+                              nzMin="0" 
+                              nzMax="100"
+                              formControlName="amount"
+                            ></nz-input-number>
+                          }
+                        </nz-form-control>
+                      </nz-form-item>
+                    </ng-container>
+                  </ng-container>
+                }
+              } 

@@ -1,0 +1,62 @@
+<div nz-flex [nzVertical]="true" class="home-container" nzGap="16px">
+    @if (authService.currentUser()){
+    <div nz-flex nzGap="16px">
+        <nz-card nzHoverable style="width:200px" 
+            [nzCover]="createBevCustCoverTempl"
+            class="clickable-card"
+            (click)="onCardClick('create')">
+            <nz-card-meta nzTitle="Create Beverage Customisations" nzDescription="Add a new beverage customisation"></nz-card-meta>
+        </nz-card>
+        <nz-card nzHoverable style="width:200px" 
+            [nzCover]="editBevCustCoverTempl"
+            class="clickable-card"
+            (click)="onCardClick('edit')">
+            <nz-card-meta nzTitle="Edit Beverage Customisations" nzDescription="Edit your existing beverage customisations"></nz-card-meta>
+        </nz-card>
+    </div>
+    }
+    <!-- <div> -->
+    <nz-card nz-flex [nzVertical]="true" nzGap="8px" nzTitle="Recent Beverage Customisations">
+        @if (!hasRecentCustomisations()) {
+            @if (isLoading()) {
+                <p>Loading recent beverage customisations...</p>
+            } @else {   
+                <p>No recent beverage customisations found.</p> <!-- use an empty -->
+            }
+        } @else {
+        <div nz-flex nzGap="8px" [nzVertical]="true">
+            @for(customisation of recentBeverageCustomisations(); track customisation.id) {
+            <div nz-flex [nzVertical]="false">
+                <div style="flex: 1 0 0"></div>
+                <div nz-flex nzGap="16px" style="flex: 2 0 0;box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); padding: 16px; border-radius: 8px;">
+                    <img alt="example1" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" class="user-img"/>
+                    <div nz-flex [nzVertical]="true">
+                        <p>{{customisation.username}} created a customisation for <span class="bev-type-bold">{{ customisation.beverageTypeDescr }}</span>.</p> 
+                        <p>They prefer to have
+                        @for (ingredient of customisation.ingredientsDescr; track ingredient; let i = $index) {
+                            @if (i < customisation.ingredientsDescr.length - 2) {<span class="ingredient-italic">{{ingredient + ", "}}</span>} 
+                            @else if (i == customisation.ingredientsDescr.length - 2) {<span class="ingredient-italic">{{ingredient}}</span>} 
+                            @else {<span class="ingredient-italic">{{" and " + ingredient + "."}}</span>}
+                        <!-- <span class="ingredient-italic">{{ingredient}}</span>@if (i < customisation.ingredientsDescr.length){<span>, </span>} -->
+                        }
+                        </p>
+                    </div>
+                </div>
+                <div style="flex: 1 0 0"></div>
+            </div>
+            }
+        </div>
+        }
+    </nz-card>
+    <!-- </div> -->
+</div>
+
+<ng-template #createBevCustCoverTempl>
+    <!-- <div style="background-color: coral"> -->
+        <img alt="example1" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
+    <!-- </div> -->
+</ng-template>
+
+<ng-template #editBevCustCoverTempl>
+    <img alt="example2" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
+</ng-template>

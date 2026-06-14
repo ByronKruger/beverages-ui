@@ -1,0 +1,39 @@
+.user-img {
+    width: 40px;
+    height: auto;
+}
+
+.bev-type-bold {
+    font-weight: bold;
+}
+
+.ingredient-italic {
+    font-style: italic;
+}
+
+.home-container {
+    margin-top: 16px;
+}
+
+.clickable-card {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease; // nice with nzHoverable
+
+    &:hover, &:focus-visible {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); // enhance hover
+    }
+
+    // The magic: Expand the link hit area to cover the whole card
+    .card-link {
+        position: absolute;
+        inset: 0;           // modern way (top:0; left:0; right:0; bottom:0)
+        z-index: 1;
+        opacity: 0;         // visually invisible but still accessible
+
+        // Ensure focus is visible on the card itself
+        &:focus-visible {
+            outline: none; // we'll show outline on the card
+        }
+    }
+}

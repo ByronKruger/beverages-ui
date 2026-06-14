@@ -1,0 +1,52 @@
+<nz-card nzTitle="xxx's Beverage Customisations">
+  <div nz-flex [nzVertical]="false">
+    @for (beverageType of beverageTypes(); track beverageType.id) {
+      <form [formGroup]="beverageCustomisationForm()!" nz-form (ngSubmit)="onSubmit()">
+        <div nz-flex [nzVertical]="false" style="background-color: azure; width: 100%">
+          <span style="font-weight: 700; color: blue; width: 33%" 
+                (click)="onShowBeverageTypeIngredients(beverageType.id)">
+            {{beverageType.descr}}
+          </span>
+
+          <div style="background-color: beige; width: 33%">
+            @for (ingredient of beverageTypeIngredients(); track ingredient.id; let idx = $index) {  
+              @if (ingredient.isComplex) {
+                <nz-divider nzText="{{ingredient.descr + ' Type' }}"></nz-divider>
+                @for (complexIngredient of ingredient.complexIngredients; track complexIngredient.id; let idx2 = $index) {
+                 <!-- <div>{{"idx2"}}</div> -->
+                 <br>
+                 <br>
+                 <div>{{idx2}}</div>
+                  @if (isReadOnly() && getComplexAmountByIngredientId(complexIngredient.id) !== 0) {
+                    <div style="background-color: salmon; margin-left: 16px;">
+                      <p>{{complexIngredient.descr + ":? " + getComplexAmountByIngredientId(complexIngredient.id)}}</p>
+                    </div>
+                  } @else if (!isReadOnly()) {
+                    <!-- Complex sub-ingredient -->
+                    <ng-container formArrayName="complexIngredientAmounts">
+                      <ng-container [formGroupName]="getComplexIngredientFormIndex(complexIngredient.id)">
+                        <nz-form-item>
+                          <nz-form-label>{{ complexIngredient.descr }}</nz-form-label>
+                          <nz-form-control>
+                            <!-- @if (isEdit()) { -->
+                              <nz-input-number 
+                                nzSize="large" 
+                                nzMin="0" 
+                                nzMax="100"
+                                formControlName="amount"
+                              />
+                            <!-- } -->
+                          </nz-form-control>
+                        </nz-form-item>
+                      </ng-container>
+                    </ng-container>
+                  }
+                }
+              }
+            }
+          </div>
+        </div>
+      </form>
+    }
+  </div>
+</nz-card>

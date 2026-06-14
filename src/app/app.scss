@@ -1,0 +1,54 @@
+.content-container {
+    // height: 100vh - 13vh; /* Adjust the height to account for the header and footer */
+    display: flex;
+    flex-direction: column;
+    background-color: silver1;
+    // align-items: center;
+}
+
+.left, .right {
+    background-color: darkgreen1;
+}
+
+.main{
+    background-color: maroon1;
+    min-height: 100vh;
+}
+
+@media(min-width: 768px) {
+    .content-container {
+        flex-direction: row;
+        background-color: grey1;
+    }
+    .left, .right {
+        flex: 1 0 0;
+        background-color: darkgreen1;
+    }
+    .main {
+        background-color: firebrick1;
+        flex: 5 0 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .content-container {
+        flex-direction: row;
+        background-color: darkgrey1
+    }
+    .left, .right {
+        flex: 1 0 0;
+        background-color: darkgreen1;
+    }
+    .main {
+        background-color: crimson1;
+        flex: 2 0 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    
+}
+
+::ng-deep .ant-divider-horizontal {
+  border-top-width: 2px!important;    /* make it thicker */
+}

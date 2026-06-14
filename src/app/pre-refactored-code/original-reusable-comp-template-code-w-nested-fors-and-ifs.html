@@ -1,0 +1,82 @@
+<nz-card nzTitle="xxx's Beverage Customisations">
+    <div nz-flex [nzVertical]="false" >
+        @for (beverageType of beverageTypes(); track beverageType.id) {
+        <form [formGroup]="beverageCustomisationForm!" nz-form (ngSubmit)="onSubmit()">
+        <div nz-flex [nzVertical]="false" style="background-color: azure1; width: 100%">
+            <span style="font-weight: 700; color: blue; width: 33%" (click)="onShowBeverageTypeIngredients(beverageType.id)">
+                {{beverageType.descr}}
+            </span>
+            <div style="background-color: beige1; width: 33%">
+            @for (i2 of beverageTypeIngredients(); track i2.id) {
+                <!-- @for (iAmount of selectedBeverageCustomisation()?.ingredientAmounts; track iAmount.id) { -->
+                    @if (!i2.isComplex) {
+                        <!-- <nz-divider></nz-divider> -->
+                    }
+                    <!-- @else if (isReadOnly()) { -->
+                    @else {
+                        <!-- <nz-divider nzText="{{i2.descr + ' Type' }}"></nz-divider> -->
+                    }
+                    @if (!i2.isComplex) {
+                        <nz-divider></nz-divider>
+                        @if (isReadOnly()) {
+                            <div style="background-color:burlywood1">
+                                <p>{{ i2.descr + ": " + getAmountByIngredientId(i2.id) }}</p>
+                            </div>
+                        }
+                        @else {
+                            <!-- <div nz-flex [nzVertical]="false" style="margin-bottom: 4px;"> -->
+                                <!-- <p style="width: 200px">{{ i2.descr + " Amount: "}}</p> -->
+                                <!-- <input type="number" style="width: 100px;" /> -->
+                            <nz-form-item>
+                                <nz-form-label>{{ i2.descr }}</nz-form-label>
+                                <nz-form-control>
+                                @if (isEdit()){
+                                    <nz-input-number nzSize="large" nzMin="0" nzMax="100" formControlName="amount"/>
+                                } @else {
+                                    <nz-input-number nzSize="large" nzMin="0" nzMax="100" formControlName="amount"/>
+                                }
+                                </nz-form-control>
+                            </nz-form-item>
+                            <!-- </div> -->
+                        }
+                    }
+                    @else if (i2.isComplex) {
+                        <nz-divider nzText="{{i2.descr + ' Type' }}"></nz-divider>
+                        @for (complexIngredient of i2.complexIngredients; track complexIngredient.id) {
+                            @if (isReadOnly() && getComplexAmountByIngredientId(complexIngredient.id) !== 0){
+                                <!-- @for (complexIngredientAmount of selectedBeverageCustomisation()?.complexIngredientAmounts; track complexIngredientAmount.id) { -->
+                                    <!-- @if (complexIngredientAmount.complexIngredientId == complexIngredient.id) { -->
+                                        <!-- <p>{{ i2.descr + " Type" }}</p> -->
+                                        <div style="background-color: salmon1; margin-left: 16px;">
+                                            <p>{{complexIngredient.descr + ": " + getComplexAmountByIngredientId(complexIngredient.id)}}</p>
+                                        </div>
+                                    <!-- } -->
+                                <!-- } -->
+                            }
+                            @else if (!isReadOnly()) {
+                                <!-- <div nz-flex [nzVertical]="false" style="margin-bottom: 4px;"> -->
+                                <nz-form-item>
+                                    <nz-form-label>{{ complexIngredient.descr }}</nz-form-label>
+                                    <nz-form-control>
+                                        <!-- <p style="margin-left: 16px; width: 200px">{{complexIngredient.descr + " Amount:" }}</p> -->
+                                        <!-- <input type="number" style="width: 100px"/> -->
+                                    @if (isEdit()) {
+                                        <!-- <p>edit (c)</p> -->
+                                        <nz-input-number nzSize="large" nzMin="0" nzMax="100" formControlName="amount"/>
+                                    } @else {
+                                        <nz-input-number nzSize="large" nzMin="0" nzMax="100"/>
+                                    }
+                                    </nz-form-control>
+                                <!-- </div> -->
+                                </nz-form-item>
+                            }
+                        }
+                    }
+                <!-- } -->
+            }
+            </div>
+        </div>
+        </form>
+        }
+    </div>
+</nz-card>

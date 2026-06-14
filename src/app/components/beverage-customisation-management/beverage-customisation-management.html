@@ -1,0 +1,94 @@
+<nz-card nzTitle="{{beverageCustomisationTitle()}}" class="beverage-customisation-container">
+  <div nz-flex [nzVertical]="false" style="background-color: none;">
+    @if (isLoading()) {
+      <div style="background-color: orangered; width: 100px; height: 10px;">xxx</div>
+    } @else {
+      <div nz-flex [nzVertical]="true" style="flex: 1; background-color: none">
+      @for (beverageType of beverageTypes(); track beverageType.id; let btIndex = $index) {
+        <span style="font-weight: 700; color: blue;" 
+              (click)="onShowBeverageTypeIngredients(beverageType.id)">
+          {{beverageType.descr}}
+        </span>
+      }
+      </div>
+      <!-- @for (beverageType of beverageTypes(); track beverageType.id; let btIndex = $index) { -->
+      <form [formGroup]="beverageCustomisationForm!" nz-form (ngSubmit)="onSubmit()" style="flex: 2">
+      <div nz-flex [nzVertical]="false" style="background-color: none">
+        <div style="background-color: none; flex: 2">
+          @for (ingredient of beverageTypeIngredients(); track ingredient.id; let idx = $index) {
+          <!-- {{'isComplex:'+ingredient.isComplex}} -->
+          @if (ingredient.isComplex) {
+          <nz-divider nzText="{{ingredient.descr + ' Type' }}"></nz-divider>
+            @for (complexIngredient of ingredient.complexIngredients; track complexIngredient.id; let idx2 = $index) {
+            @if (isReadOnly() && getComplexAmountByIngredientId(complexIngredient.id) !== 0) {
+            <div style="background-color: none; margin-left: 16px;">
+              <p>{{complexIngredient.descr + ": " + getComplexAmountByIngredientId(complexIngredient.id)}}</p>
+            </div>
+            } @else if (!isReadOnly()) {
+            <ng-container formArrayName="complexIngredientAmounts">
+            <ng-container [formGroupName]="getComplexIngredientFormIndex(complexIngredient.id)">
+            <nz-form-item style="background-color: orange1">
+              <nz-form-label style="width: 120px; background-color: pink1;">{{ complexIngredient.descr }}</nz-form-label>
+              @if (isEdit()) {
+              <nz-form-control style="background-color: red1;">
+                <nz-input-number 
+                  nzSize="large" 
+                  nzMin="0" 
+                  nzMax="100"
+                  formControlName="amount"
+                />
+              </nz-form-control>
+              }
+            </nz-form-item>
+            </ng-container>
+            </ng-container>
+            }}
+          } @else { <!-- non -complex ing -->
+            <nz-divider nzText="{{ingredient.descr }}"></nz-divider>
+            @if (isReadOnly() && getAmountByIngredientId(ingredient.id) !== 0) {
+            <div style="background-color: none; margin-left: 16px;">
+              <p>{{ingredient.descr + ": " + getAmountByIngredientId(ingredient.id)}}</p>
+            </div>
+            } @else if (!isReadOnly()) {
+            <ng-container formArrayName="ingredientAmounts">
+            <ng-container [formGroupName]="getSimpleIngredientFormIndex(ingredient.id)">
+            <nz-form-item style="background-color: orange1">
+              <nz-form-label style="width: 120px; background-color: pink1;">{{ ingredient.descr }}</nz-form-label>
+              @if (isEdit()) { <!-- remove? -->
+              <nz-form-control style="background-color: red1;">
+                <nz-input-number 
+                  nzSize="large" 
+                  nzMin="0" 
+                  nzMax="100"
+                  formControlName="amount"
+                />
+              </nz-form-control>
+              } 
+              <!-- @else {
+              <nz-form-control style="background-color: red1;">
+                <nz-input-number 
+                  nzSize="large" 
+                  nzMin="0" 
+                  nzMax="100"
+                  formControlName="amount"
+                />
+              </nz-form-control>
+              } -->
+            </nz-form-item>
+            </ng-container>
+            </ng-container>
+            }
+          }}
+        </div>
+      </div>
+      </form>
+      <!-- } -->
+    }
+  </div>
+  <button
+    nz-button
+    nzType="primary"
+    (click)="onSubmit()">
+    Submit
+  </button>
+</nz-card>
