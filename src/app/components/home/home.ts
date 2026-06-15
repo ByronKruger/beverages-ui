@@ -6,6 +6,7 @@ import { RecentBeverageCustomisation } from '../../services/beverage-customisati
 import { BeverageCustomisationService } from '../../services/beverage-customisation/beverage-customisation.service';
 import { Router } from '@angular/router';
 import { RouteType } from './home.model';
+import { RegisterUserService } from '../auth/register-user/register-user.service';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,7 @@ import { RouteType } from './home.model';
 })
 export class Home {
   protected authService = inject(AuthenticationService);
+  protected registerUserService = inject(RegisterUserService);
   protected beverageCustomisationService = inject(BeverageCustomisationService);
   protected isLoading = signal<boolean>(true);
 
@@ -33,6 +35,22 @@ export class Home {
       error: (error) => {
         console.error('Failed to retrieve recent beverage customisations:', error);
         this.isLoading.set(false);
+      }
+    });
+
+    console.log("to call reg-user");
+    this.registerUserService.register({
+      email: "user@example.com",
+      firstName: "John",
+      lastName: "Doe",
+      password: "password123",
+      username: "johndoe"
+    }).subscribe({
+      next: (response) => {
+        console.log('User registered successfully:', response);
+      },
+      error: (error) => {
+        console.error('Failed to register user:', error);
       }
     });
   }
