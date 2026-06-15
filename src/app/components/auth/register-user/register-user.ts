@@ -10,7 +10,8 @@ import { RegisterUserService } from './register-user.service';
 export class RegisterUser {
   public service = inject(RegisterUserService);  
 
-  public ngOninit(): void {
+  public ngOnInit(): void {
+    console.log("to call reg-user");
     this.service.register({
       email: "user@example.com",
       firstName: "John",
