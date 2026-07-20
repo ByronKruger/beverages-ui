@@ -38,21 +38,21 @@ export class Home {
       }
     });
 
-    console.log("to call reg-user");
-    this.registerUserService.register({
-      email: "user@example.com",
-      firstName: "John",
-      lastName: "Doe",
-      password: "password123",
-      username: "johndoe"
-    }).subscribe({
-      next: (response) => {
-        console.log('User registered successfully:', response);
-      },
-      error: (error) => {
-        console.error('Failed to register user:', error);
-      }
-    });
+    // console.log("to call reg-user");
+    // this.registerUserService.register({
+    //   email: "user@example.com",
+    //   firstName: "John",
+    //   lastName: "Doe",
+    //   password: "password123",
+    //   username: "johndoe"
+    // }).subscribe({
+    //   next: (response) => {
+    //     console.log('User registered successfully:', response);
+    //   },
+    //   error: (error) => {
+    //     console.error('Failed to register user:', error);
+    //   }
+    // });
   }
 
   onCardClick(routeTo: string): void {

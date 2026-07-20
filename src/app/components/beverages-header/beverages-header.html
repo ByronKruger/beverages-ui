@@ -4,7 +4,7 @@
       @if (!authService.currentUser()) {
         <div nz-flex nzGap="8px" nzAlign="center">
           <button nz-button nzType="primary" (click)="onLogin()">Login</button>
-          <button nz-button nzType="default" (click)="onLogin()">Register</button>
+          <button nz-button nzType="default" (click)="onRegister()">Register</button>
         </div>
         <!-- <div style="background-color: aliceblue;">{{authService.currentUser() | json}}</div> -->
       } @else {

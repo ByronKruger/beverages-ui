@@ -72,6 +72,17 @@ export class BeverageCustomisationManagement {
     // const beverageCustomisations = details?.beverageCustomisations;
     // cosnt beverageCustomisation/
 
+    if (this.isCreate() == true) {
+      return this.userBeverageCustomisations()?.map((bc: any) => {
+        const beverageType: BeverageType = {
+          id: bc.id,
+          descr: bc.descr,
+          ingredients: []
+        };
+        return beverageType;
+      });
+    }
+
     return this.userBeverageCustomisations()?.map((bc: any) => {
       const beverageType: BeverageType = {
         id: bc.beverageType.id,
@@ -129,6 +140,10 @@ export class BeverageCustomisationManagement {
     // console.log("complexIngredientAmounts: " + JSON.stringify(complexIngredientAmounts));
     // var beverageTypeId = beverageCustomisations?.find((bc: any) => bc.beverageType.id === id)?.beverageType.id;
     // console.log("beverageTypeId: " + JSON.stringify(beverageTypeId));
+    if (this.isCreate() == true) {
+      return customisations?.find((bc: any) => bc.id === id) ?? null;
+    }
+
     var currentCustomisation = customisations?.find((bc: any) => bc.beverageType.id === id) ?? null;
     var selectedBeverageCustomisation = (id == 0) ? this.defaultBeverageCustomisation() : currentCustomisation ?? null;
 
@@ -172,7 +187,7 @@ export class BeverageCustomisationManagement {
     let iaFormGroup: FormGroup[] = [];
 
     if (customisationTemplate){
-      customisationTemplate.beverageType.ingredients.forEach((i: any) => {
+      customisationTemplate.ingredients.forEach((i: any) => {
 
         if (i.isComplex) {
           i.complexIngredients.forEach((ci: any) => {
@@ -245,6 +260,9 @@ export class BeverageCustomisationManagement {
   }
 
   public beverageTypeIngredients = computed(() => {
+    if (this.isCreate() == true) {
+      return this.selectedBeverageCustomisation()?.ingredients;
+    }
     return this.selectedBeverageCustomisation()?.beverageType.ingredients;
   });
 
@@ -339,5 +357,15 @@ export class BeverageCustomisationManagement {
 
   onSubmit() {
     console.log(this.beverageCustomisationForm?.value);
+    this.beverageCustomisationService.addBeverageCustomisation({...this.beverageCustomisationForm?.value, beverageTypeId: this.currentBeverageTypeId()}).subscribe({
+      next: (response) => {
+        console.log('Beverage customisation submitted successfully:', response);
+        // Handle successful submission, e.g., navigate, show success message, etc.
+      },
+      error: (error) => {
+        console.error('Failed to submit beverage customisation:', error);
+        // Handle submission failure, e.g., show error message to user
+      }
+    });
   }
 }

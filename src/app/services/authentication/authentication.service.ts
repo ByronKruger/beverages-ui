@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { UserAuthRequest, User } from './authentication.model';
-import { Observable, tap } from 'rxjs';
+import { first, Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { RegisterUserRequest } from './register-user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,25 @@ export class AuthenticationService {
 
   public login(authRequest: UserAuthRequest): Observable<User> {
     return this.http.post<User>(`${this.apiBaseUri}user/login`, {...authRequest, username: authRequest.email})
+      .pipe(
+        tap((response) => {
+          if (response) {
+            localStorage.setItem('authData', JSON.stringify(response));
+          }
+        })
+      );
+  }
+
+  public register(registerRequest: RegisterUserRequest): Observable<User> {
+    return this.http.post<User>(`${this.apiBaseUri}user/register`, {...registerRequest, firstName: "First", lastName: "Last"}
+    //   {
+    //   username: "JM_12_007",
+    //   email: "abc@gxyz12.com",
+    //   password: "P@ssword1",
+    //   firstName: "First",
+    //   lastName: "Last"
+    // }
+  )
       .pipe(
         tap((response) => {
           if (response) {

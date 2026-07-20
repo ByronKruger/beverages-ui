@@ -60,7 +60,11 @@ export class BeveragesHeader {
   onLogin() {
     this.router.navigate(['/auth-user'])
   }
-  
+
+  onRegister() {
+    this.router.navigate(['/register-user'])
+  }
+
   onLogout() {
     this.authService.logout();
     this.router.navigate(['/']);

@@ -9,7 +9,9 @@
                 <!-- <div style="flex: 1"></div> -->
                 <div nz-flex [nzVertical]="true">
                     <div nz-flex nzJustify="center">
-                        <h2>Sign in With Your Email</h2>
+                        <!-- <div>{{ isLogin() == true ? "Login" : "Register" }}</div> -->
+                        <h2 *ngIf="isLogin() == true">Sign in With Your Email</h2>
+                        <h2 *ngIf="isLogin() == false">Register With Your Email</h2>
                     </div>
 
                     <nz-form [formGroup]="loginForm" nz-flex [nzVertical]="true">
@@ -39,7 +41,7 @@
                                 </nz-form-control>
                             </nz-form-item>
                             <div nz-flex nzJustify="center">
-                                <button style="width: 200px" nz-button nzType="primary" (click)="onAuth()">Login</button>
+                                <button style="width: 200px" nz-button nzType="primary" (click)="onSubmit()">{{ isLogin() == true ? "Login" : "Register" }}</button>
                             </div>
                         <!-- </div> -->
                     </nz-form>

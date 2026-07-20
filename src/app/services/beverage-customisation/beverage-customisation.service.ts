@@ -37,7 +37,11 @@ export class BeverageCustomisationService {
   }
 
   public getBeverageCustomisationTemplate(): Observable<BeverageCustomisationTemplate[]> {
-    return this.httpClient.get<BeverageCustomisationTemplate[]>(`${this.baseUrl}beverage-customisation/customisation-template`);
+    return this.httpClient.get<BeverageCustomisationTemplate[]>(`${this.baseUrl}beverage-customisation/beverage-types`);
   }
 
+  public addBeverageCustomisation(beverageCustomisation: any): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}beverage-customisation/add-customisation`, {...beverageCustomisation, beverageTypeId: beverageCustomisation.beverageTypeId});
+  }
+  
 }
