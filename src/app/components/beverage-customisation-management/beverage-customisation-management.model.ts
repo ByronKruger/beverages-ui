@@ -20,6 +20,14 @@ export interface BeverageCustomisation {
     complexIngredientAmounts: ComplexIngredientAmount[] | undefined
 }
 
+export interface AddBeverageCustomisation1 {
+    // beverageTypeId: number,
+    beverageTypeId: number,
+    // ingredients: Ingredient[],
+    ingredientAmounts: IngredientAmount1[] | undefined
+    complexIngredientAmounts: ComplexIngredientAmount1[] | undefined
+}
+
 export interface Ingredient {
     id: number,
     descr: string,
@@ -35,6 +43,16 @@ export interface IngredientAmount {
 
 export interface ComplexIngredientAmount {
     id: number,
+    amount: number,
+    complexIngredientId: number
+}
+
+export interface IngredientAmount1 {
+    amount: number,
+    ingredientId: number
+}
+
+export interface ComplexIngredientAmount1 {
     amount: number,
     complexIngredientId: number
 }

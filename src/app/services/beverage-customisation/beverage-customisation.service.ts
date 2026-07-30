@@ -3,6 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { catchError, debounceTime, distinctUntilChanged, map, Observable, of, switchMap } from 'rxjs';
 import { BeverageCustomisationTemplate, RecentBeverageCustomisation } from './beverage-customisation.model';
+import { AddBeverageCustomisation1, BeverageCustomisation } from '../../components/beverage-customisation-management/beverage-customisation-management.model';
+import { CreateBeverageCustomisation } from '../../components/create-beverage-customisation/create-beverage-customisation';
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +42,7 @@ export class BeverageCustomisationService {
     return this.httpClient.get<BeverageCustomisationTemplate[]>(`${this.baseUrl}beverage-customisation/beverage-types`);
   }
 
-  public addBeverageCustomisation(beverageCustomisation: any): Observable<any> {
+  public addBeverageCustomisation(beverageCustomisation: AddBeverageCustomisation1): Observable<any> {
     return this.httpClient.post(`${this.baseUrl}beverage-customisation/add-customisation`, {...beverageCustomisation, beverageTypeId: beverageCustomisation.beverageTypeId});
   }
   
