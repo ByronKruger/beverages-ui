@@ -14,7 +14,7 @@ export class BeverageCustomisationService {
   private baseUrl = environment.apiBaseUrl;
 
   private searchUser(name: string): Observable<string[]> {
-    return this.httpClient.get(`${this.baseUrl}beverage-customisation/users?name=${name}`).pipe(
+    return this.httpClient.get(`${this.baseUrl}user/users?name=${name}`).pipe(
       map((response: any) => response.map((user: any) => user.id)), // Assuming the API returns an array of users with a 'username' property
     );
   }
