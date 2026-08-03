@@ -78,6 +78,8 @@ export class AuthenticationService {
         token: data.token,
       };
 
+      console.log(`%c${user}`, "background-color: crimson, color: red")
+
       this.currentUser.set(user);
     } catch (err) {
       console.error('Failed to decode JWT', err);
