@@ -57,7 +57,7 @@ export class Home {
 
   onCardClick(routeTo: string): void {
     if (routeTo === 'edit') {
-      console.log(`to call edit, email:\t\t${this.authService.currentUser()?.email}`);
+      console.log(`to call edit, email:\t\t${this.authService.currentUser()?.id}`);
       this.router.navigate([`/edit-beverage-customisation/${this.authService.currentUser()?.email}`]);
     } else if (routeTo === 'create') {
       this.router.navigate(['/create-beverage-customisation']);
