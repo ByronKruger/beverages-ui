@@ -46,6 +46,7 @@ export class AuthenticationService {
 
   setCurrentUser(): void {
     const authData = localStorage.getItem('authData');
+    console.log(authData);
     if (!authData) return;
     this.currentUser.set(JSON.parse(authData) as User);
   }
