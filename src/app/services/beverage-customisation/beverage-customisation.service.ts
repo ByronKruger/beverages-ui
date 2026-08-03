@@ -13,9 +13,9 @@ export class BeverageCustomisationService {
   private httpClient = inject(HttpClient);
   private baseUrl = environment.apiBaseUrl;
 
-  private searchUser(name: string): Observable<string[]> {
+  private searchUser(name: string): Observable<any[]> {
     return this.httpClient.get(`${this.baseUrl}user/users?name=${name}`).pipe(
-      map((response: any) => response.map((user: any) => user.id)), // Assuming the API returns an array of users with a 'username' property
+      map((response: any) => response.map((user: any) => ({ id: user.id, name: user.name }))), // Assuming the API returns an array of users with a 'username' property
     );
   }
 

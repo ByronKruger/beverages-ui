@@ -32,7 +32,7 @@ export class BeveragesHeader {
 
   protected authService = inject(AuthenticationService);
 
-  options: Observable<string[]> = this.searchControl.valueChanges.pipe(
+  options: Observable<any[]> = this.searchControl.valueChanges.pipe(
     // startWith(''),
     this.beverageCustomisationService.liveSearch.bind(this.beverageCustomisationService)
   );
