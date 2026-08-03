@@ -78,7 +78,7 @@ export class AuthenticationService {
         token: data.token,
       };
 
-      console.log(`%c${user}`, "background-color: crimson, color: red")
+      console.log(`%c${JSON.stringify(user)}`, "background-color: crimson, color: red")
 
       this.currentUser.set(user);
     } catch (err) {
