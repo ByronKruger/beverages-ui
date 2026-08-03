@@ -73,6 +73,7 @@ export class AuthenticationService {
 
       // Map claims → your User model
       const user: User = {
+        id: decoded.sub!,
         email: decoded.email!,
         username: decoded.unique_name,
         token: data.token,
