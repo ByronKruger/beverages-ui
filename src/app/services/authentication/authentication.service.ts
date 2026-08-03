@@ -4,6 +4,17 @@ import { UserAuthRequest, User } from './authentication.model';
 import { first, Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { RegisterUserRequest } from './register-user.model';
+import { jwtDecode } from 'jwt-decode';
+
+interface JwtPayload {
+  sub?: string;          // usually the user id
+  email?: string;
+  exp?: number;
+  iat?: number;
+  unique_name: string;
+  // add any custom claims your backend puts in the token
+  // [key: string]: any;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -45,10 +56,33 @@ export class AuthenticationService {
   }
 
   setCurrentUser(): void {
-    const authData = localStorage.getItem('authData');
-    console.log(authData);
-    if (!authData) return;
-    this.currentUser.set(JSON.parse(authData) as User);
+    try {
+      const authData = localStorage.getItem('authData');
+      console.log(authData);
+      
+      if (!authData) return;
+      // this.currentUser.set(JSON.parse(authData) as User);
+      let data = JSON.parse(authData) as User;
+      const decoded = jwtDecode<JwtPayload>(data.token);
+
+      // Optional: check expiry
+      if (decoded.exp && decoded.exp * 1000 < Date.now()) {
+        this.logout();
+        return;
+      }
+
+      // Map claims → your User model
+      const user: User = {
+        email: decoded.email!,
+        username: decoded.unique_name,
+        token: data.token,
+      };
+
+      this.currentUser.set(user);
+    } catch (err) {
+      console.error('Failed to decode JWT', err);
+      this.logout();
+    }
   }
 
   public logout(): void {
