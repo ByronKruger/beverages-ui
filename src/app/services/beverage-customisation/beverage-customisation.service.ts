@@ -15,7 +15,7 @@ export class BeverageCustomisationService {
 
   private searchUser(name: string): Observable<any[]> {
     return this.httpClient.get(`${this.baseUrl}user/users?name=${name}`).pipe(
-      map((response: any) => response.map((user: any) => ({ id: user.id, firstName: user.firstName, lastName: user.lastName, userName: user.userName }))), // Assuming the API returns an array of users with a 'firstName', 'lastName', and 'userName' property
+      map((response: any) => response.map((user: any) => ({ id: user.id, firstName: user.firstName, lastName: user.lastName, userName: user.username }))), // Assuming the API returns an array of users with a 'firstName', 'lastName', and 'userName' property
     );
   }
 

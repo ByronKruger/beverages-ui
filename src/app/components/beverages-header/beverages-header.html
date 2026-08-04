@@ -48,6 +48,6 @@
 <nz-autocomplete #auto>
   <nz-auto-option *ngFor="let option of options | async" [nzValue]="option.id"
     (selectionChange)="onSearchUserDetails($event, option.id)">
-    {{ option.firstName + ' ' + option.lastName + ' (' + option.userName+ ')' }}
+    {{ option.firstName + ' ' + option.lastName + ' (' + option.username+ ')' }}
   </nz-auto-option>
 </nz-autocomplete>
