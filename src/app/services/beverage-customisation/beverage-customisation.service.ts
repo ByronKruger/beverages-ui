@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { catchError, debounceTime, distinctUntilChanged, map, Observable, of, switchMap } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, last, map, Observable, of, switchMap } from 'rxjs';
 import { BeverageCustomisationTemplate, RecentBeverageCustomisation } from './beverage-customisation.model';
 import { AddBeverageCustomisation1, BeverageCustomisation } from '../../components/beverage-customisation-management/beverage-customisation-management.model';
 import { CreateBeverageCustomisation } from '../../components/create-beverage-customisation/create-beverage-customisation';
@@ -15,7 +15,7 @@ export class BeverageCustomisationService {
 
   private searchUser(name: string): Observable<any[]> {
     return this.httpClient.get(`${this.baseUrl}user/users?name=${name}`).pipe(
-      map((response: any) => response.map((user: any) => ({ id: user.id, name: user.name }))), // Assuming the API returns an array of users with a 'username' property
+      map((response: any) => response.map((user: any) => ({ id: user.id, firstName: user.firstName, lastName: user.lastName }))), // Assuming the API returns an array of users with a 'firstName' and 'lastName' property
     );
   }
 
