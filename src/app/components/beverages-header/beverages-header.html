@@ -1,7 +1,7 @@
 <div nz-flex [nzVertical]="false" class="header-container">
-    <div class="logo-container" [nzFlex]="'1 0 0'">x</div>
-    <div nz-flex class="nav-container" [nzFlex]="'2 0 0'" nzJustify="space-between" nzAlign="center">
-      <div nz-flex nzJustify="space-between" style="width: 100%; height: 64px">
+    <div class="logo-container">x</div>
+    <div class="nav-container">
+      <div nz-flex [nzVertical]="false" nzJustify="space-between" style="width: 100%;">
         @if (!authService.currentUser()) {
         <div nz-flex nzGap="8px" nzAlign="center">
           <button nz-button nzType="primary" (click)="onLogin()">Login</button>
@@ -11,7 +11,7 @@
         } @else {
         <!-- <div style="background-color: aliceblue;">{{authService.currentUser() | json}}</div> -->
         <div>
-          <nz-input-group [nzSuffix]="suffixIcon" style="background-color: red1;">
+          <nz-input-group [nzSuffix]="suffixIcon">
             <input
               nzSize="small"
               nz-input
@@ -32,7 +32,7 @@
         }
       </div>
     </div>
-    <div class="right" nz-flex [nzFlex]="'1 0 0'">
+    <div class="right">
     </div>
     <!-- <nz-autocomplete #auto [nzDataSource]="options"> -->
     <!-- <nz-autocomplete #auto>
