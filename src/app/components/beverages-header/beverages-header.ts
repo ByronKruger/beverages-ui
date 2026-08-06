@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFlexModule } from 'ng-zorro-antd/flex';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-beverages-header',
@@ -16,7 +17,7 @@ import { AuthenticationService } from '../../services/authentication/authenticat
     NzFlexModule,
     NzAutocompleteModule, NzInputModule, 
     ReactiveFormsModule, NzButtonModule,
-    AsyncPipe, CommonModule,
+    AsyncPipe, CommonModule, NzIconModule
   ],
   // providers: [AuthenticationService],
   standalone: true,

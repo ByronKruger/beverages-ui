@@ -37,10 +37,11 @@
 //     // width: 100%;
 // } 
 .nav-container > div {
-    display: flex;
+    // display: flex;
     // flex: 2 0 0;
     // background-color: aqua;
     // width: 100%;
+    justify-content: space-between;
 }
 /* ---------- Medium screens (768px – 1199px) → 1 : 5 : 1 ---------- */
 @media (min-width: 768px) and (max-width: 1199.98px) {
@@ -58,12 +59,13 @@
         justify-content: space-between;
         align-items: center;
     }
-    // .nav-container > div {
+    .nav-container > div {
     //     display: flex;
     //     // flex: 2 0 0;
     //     background-color: lightblue;
     //     // width: 100%;
-    // } 
+        justify-content: space-between;
+    } 
 }
 
 /* ---------- Small screens (< 768px) → hide sides, full-width nav ---------- */
@@ -84,10 +86,11 @@
         justify-content: space-between;
         align-items: center;
     }
-    // .nav-container > div {
+    .nav-container > div {
     //     display: flex;
     //     // flex: 2 0 0;
-    //     background-color: blue;
+        background-color: blue;
     //     // width: 100%;
-    // }
+        justify-content: space-around;
+    }
 }
