@@ -50,11 +50,11 @@
     }
     .logo-container, .right {
         flex: 1 0 0;
-        background-color: hotpink;
+        background-color: hotpink0;
     }
     .nav-container {
         flex: 5 0 0;
-        background-color: crimson;
+        background-color: crimson0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -76,10 +76,10 @@
     .logo-container, .right {
         // flex: 1 0 0;
         display: none; // remove completely from layout
-        background-color: darkgreen;
+        background-color: darkgreen0;
     }   
     .nav-container {
-        background-color: maroon;
+        background-color: maroon0;
         flex: 1 0 0; // takee entire row
         // width: 100%;    
         display: flex;
@@ -89,7 +89,7 @@
     .nav-container > div {
     //     display: flex;
     //     // flex: 2 0 0;
-        background-color: blue;
+        background-color: blue0;
     //     // width: 100%;
         justify-content: space-around;
     }
