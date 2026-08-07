@@ -1,3 +1,14 @@
-.beverage-customisation-container {
-    margin: 16px;
+
+@media (min-width: 768px) {
+    .beverage-customisation-container {
+        margin: 16px;
+    }
+}
+
+.button-container {
+    flex: 1 0 0;
+}
+
+.icon {
+    font-size: 25px;
 }

@@ -10,6 +10,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { JwtBearerAuthorization } from './components/auth/interceptor/jwt-bearer-authorization';
 import { provideNzIcons } from 'ng-zorro-antd/icon';
 import { LogoutOutline } from '@ant-design/icons-angular/icons';
+import { UserOutline } from '@ant-design/icons-angular/icons';
 
 registerLocaleData(en);
 
@@ -20,7 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(), 
     provideNzI18n(en_US), 
-    provideNzIcons([LogoutOutline]),
+    provideNzIcons([LogoutOutline, UserOutline]),
     provideAnimationsAsync(), provideHttpClient(withInterceptors([JwtBearerAuthorization]))
   ]
 };

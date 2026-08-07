@@ -1,7 +1,9 @@
 <nz-card nzTitle="{{beverageCustomisationTitle()}}" class="beverage-customisation-container">
-  <div nz-flex [nzVertical]="false" style="background-color: none;">
+  <div nz-flex [nzVertical]="false" style="background-color: none;" nzJustify="center">
     @if (isLoading()) {
-      <div style="background-color: orangered; width: 100px; height: 10px;">xxx</div>
+      <div class="icon-container">
+        <nz-spin nzSimple [nzIndicator]="indicatorTemplate"></nz-spin>
+      </div>
     } @else {
       <div nz-flex [nzVertical]="true" style="flex: 1; background-color: none">
       @for (beverageType of beverageTypes(); track beverageType.id; let btIndex = $index) {
@@ -85,10 +87,16 @@
       <!-- } -->
     }
   </div>
-  <button
-    nz-button
-    nzType="primary"
-    (click)="onSubmit()">
-    Submit
-  </button>
+  @if (!isReadOnly()) {
+  <div class="button-container" nz-flex [nzVertical]="false" nzJustify="end">
+    <button
+      nz-button
+      nzType="primary"
+      (click)="onSubmit()">
+      Submit
+    </button>
+  </div>
+  }
 </nz-card>
+
+<ng-template #indicatorTemplate><nz-icon class="icon" nzType="loading" /></ng-template>

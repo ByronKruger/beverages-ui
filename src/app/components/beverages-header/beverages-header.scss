@@ -94,3 +94,12 @@
         justify-content: space-around;
     }
 }
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // width: 100%;
+    flex: 1 0 0;
+    // height: 100%;
+}

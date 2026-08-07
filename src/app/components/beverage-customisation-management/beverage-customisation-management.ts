@@ -11,6 +11,8 @@ import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFo
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @Component({
   selector: 'app-beverage-customisation-management',
@@ -18,7 +20,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     NzFlexModule, NzCardModule,
     NzDividerModule, NzInputNumberModule,
     FormsModule, NzFormModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule, 
+    NzIconModule, NzSpinModule,
     NzInputModule, NzButtonModule
   ],
   templateUrl: './beverage-customisation-management.html',
