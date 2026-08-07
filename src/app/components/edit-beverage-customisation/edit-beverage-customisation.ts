@@ -28,7 +28,7 @@ export class EditBeverageCustomisation {
 
   ngOnInit() {
     this.isLoading.set(true);
-    this.beverageCustomisationService.searchUserDetails("946ceec5-a8f5-4142-ae30-7da59f08246a").subscribe(
+    this.beverageCustomisationService.searchUserDetails(this.userId()).subscribe(
       (response: BeverageCustomisationResponse[]) => {
         const a = 2;
       //   const beverageCustomisations: BeverageCustomisation[] = response.map((item) => {
