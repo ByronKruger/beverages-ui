@@ -5,7 +5,6 @@ import { CreateBeverageCustomisation } from './components/create-beverage-custom
 import { ExternalAuthHandler } from './components/auth/external-auth-handler/external-auth-handler';
 import { CoffeegAuthenticateUser } from './components/coffeeg-authenticate-user/coffeeg-authenticate-user';
 import { Home } from './components/home/home';
-import { RegisterUser } from './components/auth/register-user/register-user';
 import { CoffeegRegisterUser } from './components/coffeeg-register-user/coffeeg-register-user';
 
 export const routes: Routes = [
@@ -36,10 +35,6 @@ export const routes: Routes = [
     {
         path: 'auth/callback/:token', // not a user-viewable route (needed for handling the callback from the external auth provider)
         component: ExternalAuthHandler
-    },
-    {
-        path: 'register-user',
-        component: RegisterUser
     },
     {
         path: '',

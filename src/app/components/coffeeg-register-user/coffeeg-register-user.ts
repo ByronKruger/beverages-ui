@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { Router } from '@angular/router';
-import { RegisterUserRequest } from '../auth/register-user/register-user.model';
+// import { RegisterUserRequest } from '../auth/register-user/register-user.model';
 import { AuthenticateUser } from '../auth/authenticate-user/authenticate-user';
 
 @Component({
