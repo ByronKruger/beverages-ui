@@ -15,6 +15,7 @@ import { RouteType } from './home.model';
 })
 export class Home {
   protected authService = inject(AuthenticationService);
+  protected registerUserService = inject(RegisterUserService);
   protected beverageCustomisationService = inject(BeverageCustomisationService);
   protected isLoading = signal<boolean>(true);
 
@@ -51,7 +52,7 @@ export class Home {
     //     console.error('Failed to register user:', error);
     //   }
     // });
-  }
+}
 
   onCardClick(routeTo: string): void {
     if (routeTo === 'edit') {

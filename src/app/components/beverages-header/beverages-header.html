@@ -1,7 +1,7 @@
 <div nz-flex [nzVertical]="false" class="header-container">
     <div class="logo-container">x</div>
     <div class="nav-container">
-      <div nz-flex [nzVertical]="false" nzJustify="space-between" style="width: 100%; height: 64px">
+      <div nz-flex [nzVertical]="false" class="actions-container">
         @if (!authService.currentUser()) {
         <div nz-flex nzGap="8px" nzAlign="center">
           <button nz-button nzType="primary" (click)="onLogin()">Login</button>

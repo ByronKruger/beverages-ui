@@ -19,6 +19,7 @@
     <nz-card nz-flex [nzVertical]="true" nzGap="8px" nzTitle="Recent Beverage Customisations">
         @if (!hasRecentCustomisations()) {
             @if (isLoading()) {
+                <!-- <nz-spin nzSimple [nzIndicator]="indicatorTemplate"></nz-spin> -->
                 <p>Loading recent beverage customisations...</p>
             } @else {   
                 <p>No recent beverage customisations found.</p> <!-- use an empty -->
