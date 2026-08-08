@@ -56,4 +56,6 @@
 .header {                          // your header class
   background-color: #001529;
   padding-top: env(safe-area-inset-top, 0px);
+  padding-left: 0px;
+  padding-right: 0px;
 }

@@ -27,13 +27,14 @@
         @if (authService.currentUser(); as user) {
         <div nz-flex nzAlign="center" nzGap="8px">
           <div style="color: whitesmoke">
-            <span style="margin-right: 8px;"><nz-icon nzType="user" nzTheme="outline"></nz-icon></span>
-            <strong>{{ user.email }}</strong>
+            <!-- <span style="margin-right: 8px;"><nz-icon nzType="user" nzTheme="outline"></nz-icon></span> -->
+            <nz-avatar nzIcon="user" style="margin-right: 8px;"></nz-avatar>
+            <strong class="mobile-screen">{{ user.email }}</strong>
           </div> <!-- should be username -->
           <button nz-button nzType="text" (click)="onLogout()" nzDanger>
-            <nz-icon nzType="logout"/>
+            <nz-icon nzType="logout" style="font-size: 16px;"/>
             <!-- @if () { -->
-            <span>Logout</span>
+            <span class="mobile-screen">Logout</span>
             <!-- } -->
           </button>
           <!-- <button nz-button nzType="default" (click)="onLogout()">Logout</button> -->

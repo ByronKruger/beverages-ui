@@ -10,6 +10,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFlexModule } from 'ng-zorro-antd/flex';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
 @Component({
   selector: 'app-beverages-header',
@@ -17,7 +18,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzFlexModule,
     NzAutocompleteModule, NzInputModule, 
     ReactiveFormsModule, NzButtonModule,
-    AsyncPipe, CommonModule, NzIconModule
+    AsyncPipe, CommonModule, NzIconModule,
+    NzAvatarModule
   ],
   // providers: [AuthenticationService],
   standalone: true,
