@@ -13,12 +13,13 @@
         <div>
           <nz-input-group [nzSuffix]="suffixIcon">
             <input
-              nzSize="small"
+              nzSize="large"
               nz-input
               [formControl]="searchControl"
               placeholder="Search users..."
               [nzAutocomplete]="auto"
-              (ngModelChange)="onSearch($event)" />
+              (ngModelChange)="onSearch($event)" 
+              style="font-size: 16px;"/>
           </nz-input-group>
           <!-- [(ngModel)]="searchValue" -->
         </div>
