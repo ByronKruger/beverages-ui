@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { DOCUMENT, Inject, inject, Injectable, signal } from '@angular/core';
 import { UserAuthRequest, User } from './authentication.model';
 import { first, Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -22,6 +22,7 @@ interface JwtPayload {
 export class AuthenticationService {
   private apiBaseUri = environment.apiBaseUrl;
   private http = inject(HttpClient);
+  private document: Document = inject(DOCUMENT);
 
   public currentUser = signal<User | null>(null);
 
@@ -58,6 +59,7 @@ export class AuthenticationService {
   setCurrentUser(): void {
     try {
       const authData = localStorage.getItem('authData');
+      console.log("authData");
       console.log(authData);
       
       if (!authData) return;
@@ -79,7 +81,7 @@ export class AuthenticationService {
         token: data.token,
       };
 
-      console.log(`%c${JSON.stringify(user)}`, "background-color: crimson, color: red")
+      console.log(`%c${JSON.stringify(user)}`, "background-color: crimson; color: red")
 
       this.currentUser.set(user);
     } catch (err) {
@@ -90,5 +92,7 @@ export class AuthenticationService {
 
   public logout(): void {
     localStorage.removeItem('authData');
+    this.setCurrentUser();
+    this.document.location.reload();
   }
 }

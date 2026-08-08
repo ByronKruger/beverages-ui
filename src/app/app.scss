@@ -52,3 +52,8 @@
 ::ng-deep .ant-divider-horizontal {
   border-top-width: 2px!important;    /* make it thicker */
 }
+
+.header {                          // your header class
+  background-color: #001529;
+  padding-top: env(safe-area-inset-top, 0px);
+}
