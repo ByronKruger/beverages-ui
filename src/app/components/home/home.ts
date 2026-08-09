@@ -5,7 +5,6 @@ import { AuthenticationService } from '../../services/authentication/authenticat
 import { RecentBeverageCustomisation } from '../../services/beverage-customisation/beverage-customisation.model';
 import { BeverageCustomisationService } from '../../services/beverage-customisation/beverage-customisation.service';
 import { Router } from '@angular/router';
-import { RouteType } from './home.model';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +14,6 @@ import { RouteType } from './home.model';
 })
 export class Home {
   protected authService = inject(AuthenticationService);
-  protected registerUserService = inject(RegisterUserService);
   protected beverageCustomisationService = inject(BeverageCustomisationService);
   protected isLoading = signal<boolean>(true);
 

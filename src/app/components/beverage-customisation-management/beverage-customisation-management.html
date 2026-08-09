@@ -4,7 +4,13 @@
       <div class="icon-container">
         <nz-spin nzSimple [nzIndicator]="indicatorTemplate"></nz-spin>
       </div>
-    } @else {
+    } 
+    @else if(isError()) {
+      <div class="error-message-container">
+        <p style="color: red;">{{errorMessage() | json}}</p>
+      </div>
+    } 
+    @else {
       <div nz-flex [nzVertical]="true" style="flex: 1; background-color: none">
       @for (beverageType of beverageTypes(); track beverageType.id; let btIndex = $index) {
         <span style="font-weight: 700; color: blue;" 

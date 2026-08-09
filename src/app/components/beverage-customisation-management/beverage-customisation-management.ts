@@ -33,6 +33,8 @@ export class BeverageCustomisationManagement {
   public userDetails = signal<any | null>(null);
   public currentBeverageTypeId = signal<number>(0);
   public isLoading = input<boolean>();
+  public errorMessage = signal<string>("");
+  public isError = signal<boolean>(false);
 
   public userBeverageCustomisations = input<any>();
   public isReadOnly = input<boolean>(false);
@@ -364,9 +366,12 @@ export class BeverageCustomisationManagement {
       next: (response) => {
         console.log('Beverage customisation submitted successfully:', response);
         // Handle successful submission, e.g., navigate, show success message, etc.
+        this.isError.set(false);
       },
-      error: (error) => {
-        console.error('Failed to submit beverage customisation:', error);
+      error: (error: any) => {
+        console.error('Failed to submit beverage customisation:', error.error);
+        this.isError.set(true);
+        this.errorMessage.set(error.error);
         // Handle submission failure, e.g., show error message to user
       }
     });
